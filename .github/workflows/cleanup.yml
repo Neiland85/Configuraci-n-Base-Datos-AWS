@@ -35,4 +35,3 @@ jobs:
         find . -name "__pycache__" -type d -exec rm -r {} +
         rm -rf node_modules/
         rm -f *.log
-

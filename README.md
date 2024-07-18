@@ -82,20 +82,3 @@ This project is licensed under the MIT License.
 
 bash
 Copiar código
-
-### Summary of Steps to Update README.md
-
-1. **Open your README.md file:**
-   ```sh
-   nano README.md  # or use any other text editor
-Copy and paste the improved description:
-
-Save and close the file.
-
-Commit and push the changes to your repository:
-
-sh
-Copiar código
-git add README.md
-git commit -m "Improved repository description with installation instructions and project structure"
-git push origin main.js

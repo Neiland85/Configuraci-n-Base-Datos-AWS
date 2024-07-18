@@ -14,5 +14,18 @@ client.connect()
   .then(() => console.log('Connected to AWS RDS'))
   .catch(err => console.error('Connection error', err.stack));
 
+async function testConnection() {
+  try {
+    const res = await client.query('SELECT NOW()');
+    console.log('Database Time:', res.rows[0]);
+  } catch (err) {
+    console.error('Query error', err.stack);
+  } finally {
+    client.end();
+  }
+}
+
+testConnection();
+
 module.exports = client;
 

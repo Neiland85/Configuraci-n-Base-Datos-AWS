@@ -1,65 +1,74 @@
-echo '
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+name: Cleanup
 
-# C extensions
-*.so
+on:
+  push:
+    branches:
+      - main.js
+  pull_request:
+    branches:
+      - main.js
 
-# Distribution / packaging
-.Python
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-.venv/
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
 
-# macOS files
-.DS_Store
-.AppleDouble
-.LSOverride
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-# Icon must end with two \r
-Icon
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
 
-# Thumbnails
-._*
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install --upgrade pip
+        pip install -r requirements.txt
 
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
+    - name: Cleanup workspace
+      run: |
+        echo "Cleaning up workspace..."
+        find . -name "*.pyc" -delete
+        find . -name "__pycache__" -type d -exec rm -r {} +
+        rm -rf node_modules/
+        rm -f *.log
+name: Cleanup
 
-# Directories potentially created on remote AFP share
-.fseventsd
-.com.apple.timemachine.donotpresent
+on:
+  push:
+    branches:
+      - main.js
+  pull_request:
+    branches:
+      - main.js
 
-# Temporary files
-.TemporaryItems
-.apdisk
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
 
-# IDE files
-.idea/
-.vscode/
-*.sublime-project
-*.sublime-workspace
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
 
-# Logs
-logs/
-*.log
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install --upgrade pip
+        pip install -r requirements.txt
 
-# Environment variables
-.env
-
-# Python-specific
-.pytest_cache/
-pip-log.txt
-pip-delete-this-directory.txt
-' > .gitignore
+    - name: Cleanup workspace
+      run: |
+        echo "Cleaning up workspace..."
+        find . -name "*.pyc" -delete
+        find . -name "__pycache__" -type d -exec rm -r {} +
+        rm -rf node_modules/
+        rm -f *.log

@@ -22,6 +22,14 @@ Configuracion-Base-Datos-AWS-azure-openai/
 ├── requirements.txt
 └── .env
 
+## Testing the Setup
+
+### Verify Database Connection
+
+To verify the connection to the AWS RDS database, run:
+```sh
+node src/main.js
+
 
 ### Installation Instructions
 
